@@ -19,13 +19,4 @@ mybatis:
   type-aliases-package: com.powernode.entity
 
 server:
-  port: 8081
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/  # 注册eureka-server
-
-#若配置成以下形式，则表示对所有的Ribbon Client 都使用RandomRule
-ribbon:
-  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+  port: 8082
