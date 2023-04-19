@@ -6,8 +6,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1/my_mall_orders?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    password: 123456
+    url: jdbc:mysql://localhost:3306/my_mall_orders?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
   application:
     name: orders-consumer
 
@@ -19,4 +19,4 @@ mybatis:
   type-aliases-package: com.powernode.entity
 
 server:
-  port: 9091
+  port: 8122

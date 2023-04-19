@@ -27,7 +27,7 @@ public class OrdersServiceImpl implements OrdersService {
     public int doOrder(Integer uid, Integer goodsId, Integer amount) {
         //restTemplate调用商品微服务，查询商品信息，restTemplate内部帮我们做了反序列化
         //这是重点
-        Goods goods = restTemplate.getForObject("http://localhost:9090/goods/" + goodsId, Goods.class);
+        Goods goods = restTemplate.getForObject("http://localhost:8120/goods/" + goodsId, Goods.class);
         if (goods != null && goods.getStore() > amount) {
             Date currentTime = new Date();
             //创建订单对象
