@@ -24,32 +24,27 @@ public class OrdersServiceImpl implements OrdersService {
      * @param uid     用户id
      * @param goodsId 商品id
      * @param amount  购买数量
-     * @return
+     * @return results 插入结果
      */
     @Override
     public int doOrder(Integer uid, Integer goodsId, Integer amount) {
         //对象名.方法名，调用商品查询信息
         Goods goods = goodsDao.getById(goodsId);
         //该商品存在并且商品库存大于购买数量，允许下单
-        if(goods!=null && goods.getStore()>amount){
-            Date currentTime=new Date();
+        if (goods != null && goods.getStore() > amount) {
+            Date currentTime = new Date();
             //创建订单对象
-            Orders orders=Orders.builder().uid(uid)
-                    .goodsId(goodsId)
-                    .status(0)
-                    .createTime(currentTime)
-                    .updateTime(currentTime)
-                    .buyNum(amount)
-                    .buyPrice(goods.getPrice())
+            Orders orders = Orders.builder().uid(uid).goodsId(goodsId).status(0).createTime(currentTime).updateTime(currentTime).buyNum(amount).buyPrice(goods.getPrice())
                     //订单总金额=商品单价乘以购买数量
-                    .orderMoney(goods.getPrice().multiply(new BigDecimal(amount)))
-                    .build();
+                    .orderMoney(goods.getPrice().multiply(new BigDecimal(amount))).build();
             //调用dao下单
             int result = ordersDao.add(orders);
+            log.info("下单成功：" + result);
             //返回下单结果
             return result;
         }
         //下单不成功
+        log.info("库存不足");
         return 0;
     }
 }
